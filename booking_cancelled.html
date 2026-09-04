@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Booking Cancelled - Tirupati Yatra</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+
+            <h1>Tirupati Yatra</h1>
+
+            <p>Your Journey, Our Responsibility</p>
+
+        </div>
+
+    </header>
+
+
+    <main class="hero">
+
+        <h2>Booking Cancelled</h2>
+
+        <p>
+            Your booking has been cancelled successfully.
+        </p>
+
+        <p>
+            <strong>Booking ID:</strong>
+            {{ booking.booking_id }}
+        </p>
+
+        <p>
+            <strong>Bus:</strong>
+            {{ trip.bus.bus_name }}
+        </p>
+
+        <p>
+            <strong>Route:</strong>
+            {{ trip.route.source }}
+            →
+            {{ trip.route.destination }}
+        </p>
+
+        <p>
+            <strong>Status:</strong>
+            Cancelled
+        </p>
+
+        <br>
+
+        <a href="/">
+            ← Book Another Journey
+        </a>
+
+    </main>
+
+</body>
+
+</html>

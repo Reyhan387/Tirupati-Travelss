@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Tirupati Yatra</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <!-- Header -->
+
+    <header>
+
+        <div class="logo">
+
+            <h1>Tirupati Yatra</h1>
+
+            <p>Your Journey, Our Responsibility</p>
+
+        </div>
+
+
+        <nav>
+
+            <a href="/">Home</a>
+
+            <a href="#">Book Bus</a>
+
+            <a href="#">Yatra</a>
+
+            <a href="#">Login</a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- Main Content -->
+
+    <main class="hero">
+
+        <h2>Plan Your Journey</h2>
+
+        <p>
+            Book your bus and Yatra journey easily.
+        </p>
+
+
+        <!-- Search Form -->
+
+        <form
+            class="search-box"
+            action="/search"
+            method="POST"
+        >
+
+
+            <!-- FROM -->
+
+            <div class="input-group">
+
+                <label for="from">
+                    From
+                </label>
+
+                <select
+                    id="from"
+                    name="source"
+                    required
+                >
+
+                    <option value="">
+                        Select Starting Location
+                    </option>
+
+                    <option value="Kopargaon">
+                        Kopargaon
+                    </option>
+
+                    <option value="Nashik">
+                        Nashik
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- TO -->
+
+            <div class="input-group">
+
+                <label for="to">
+                    To
+                </label>
+
+                <select
+                    id="to"
+                    name="destination"
+                    required
+                >
+
+                    <option value="">
+                        Select Destination
+                    </option>
+
+                    <option value="Tirupati">
+                        Tirupati
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- DATE -->
+
+            <div class="input-group">
+
+                <label for="date">
+                    Travel Date
+                </label>
+
+                <input
+                    type="date"
+                    id="date"
+                    name="travel_date"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- SEARCH BUTTON -->
+
+            <button
+                type="submit"
+                class="search-btn"
+            >
+
+                Search Buses
+
+            </button>
+
+        </form>
+
+    </main>
+
+
+</body>
+
+</html>
