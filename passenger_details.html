@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Passenger Details - Tirupati Yatra</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+
+        <h1>Tirupati Yatra</h1>
+
+        <p>Your Journey, Our Responsibility</p>
+
+    </div>
+
+</header>
+
+
+<main class="passenger-page">
+
+    <h2>Passenger Details</h2>
+
+
+    <!-- Journey Summary -->
+
+    <div class="trip-summary">
+
+        <h3>
+            {{ trip.bus.bus_name }}
+        </h3>
+
+        <p>
+            {{ trip.route.source }}
+            →
+            {{ trip.route.destination }}
+        </p>
+
+        <p>
+            Date:
+            {{ trip.travel_date }}
+        </p>
+
+        <p>
+            Seat:
+            <strong>{{ seat.seat_number }}</strong>
+        </p>
+
+        <p>
+            Ticket Price:
+            ₹{{ trip.price }}
+        </p>
+
+    </div>
+
+
+    <!-- Passenger Form -->
+
+    <form
+        action="/review-booking/{{ trip.trip_id }}"
+        method="POST"
+        class="passenger-form"
+    >
+
+        <input
+            type="hidden"
+            name="seat_id"
+            value="{{ seat.seat_id }}"
+        >
+
+
+        <div class="input-group">
+
+            <label for="name">
+                Passenger Name
+            </label>
+
+            <input
+                type="text"
+                id="name"
+                name="passenger_name"
+                placeholder="Enter passenger name"
+                required
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="mobile">
+                Mobile Number
+            </label>
+
+            <input
+                type="tel"
+                id="mobile"
+                name="mobile"
+                placeholder="Enter mobile number"
+                required
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter email address"
+                required
+            >
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="continue-btn"
+        >
+
+            Continue
+
+        </button>
+
+    </form>
+
+
+    <br>
+
+
+    <a href="/">
+        ← Back to Search
+    </a>
+
+
+</main>
+
+
+</body>
+
+</html>

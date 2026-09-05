@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Review Booking - Tirupati Yatra</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+
+        <h1>Tirupati Yatra</h1>
+
+        <p>Your Journey, Our Responsibility</p>
+
+    </div>
+
+</header>
+
+
+<main class="review-page">
+
+    <h2>Review Your Booking</h2>
+
+
+    <!-- Journey Details -->
+
+    <div class="review-card">
+
+        <h3>Journey Details</h3>
+
+        <p>
+            <strong>Bus:</strong>
+            {{ trip.bus.bus_name }}
+        </p>
+
+        <p>
+            <strong>Bus Number:</strong>
+            {{ trip.bus.bus_number }}
+        </p>
+
+        <p>
+            <strong>From:</strong>
+            {{ trip.route.source }}
+        </p>
+
+        <p>
+            <strong>To:</strong>
+            {{ trip.route.destination }}
+        </p>
+
+        <p>
+            <strong>Travel Date:</strong>
+            {{ trip.travel_date }}
+        </p>
+
+        <p>
+            <strong>Departure:</strong>
+            {{ trip.departure_time }}
+        </p>
+
+        <p>
+            <strong>Seat:</strong>
+            {{ seat.seat_number }}
+        </p>
+
+    </div>
+
+
+    <!-- Passenger Details -->
+
+    <div class="review-card">
+
+        <h3>Passenger Details</h3>
+
+        <p>
+            <strong>Name:</strong>
+            {{ passenger_name }}
+        </p>
+
+        <p>
+            <strong>Mobile:</strong>
+            {{ mobile }}
+        </p>
+
+        <p>
+            <strong>Email:</strong>
+            {{ email }}
+        </p>
+
+    </div>
+
+
+    <!-- Payment Summary -->
+
+    <div class="review-card">
+
+        <h3>Payment Summary</h3>
+
+        <p>
+            <strong>Ticket Price:</strong>
+            ₹{{ trip.price }}
+        </p>
+
+        <p>
+            <strong>Total Amount:</strong>
+            ₹{{ trip.price }}
+        </p>
+
+    </div>
+
+
+    <!-- Continue -->
+
+    <form
+    action="/create-booking/{{ trip.trip_id }}"
+    method="POST"
+>
+
+    <input
+        type="hidden"
+        name="seat_id"
+        value="{{ seat.seat_id }}"
+    >
+
+    <input
+        type="hidden"
+        name="passenger_name"
+        value="{{ passenger_name }}"
+    >
+
+    <input
+        type="hidden"
+        name="mobile"
+        value="{{ mobile }}"
+    >
+
+    <input
+        type="hidden"
+        name="email"
+        value="{{ email }}"
+    >
+
+    <button
+        type="submit"
+        class="continue-btn"
+    >
+
+        Confirm Booking
+
+    </button>
+
+</form>
+
+
+    <br>
+    <br>
+
+
+    <a href="/">
+        ← Back to Search
+    </a>
+
+
+</main>
+
+
+</body>
+
+</html>

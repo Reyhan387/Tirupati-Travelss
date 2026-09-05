@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Payment Successful - Tirupati Yatra</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="logo">
+
+        <h1>Tirupati Yatra</h1>
+
+        <p>Your Journey, Our Responsibility</p>
+
+    </div>
+
+</header>
+
+
+<main class="review-page">
+
+    <h2>🎉 Payment Successful!</h2>
+
+
+    <div class="review-card">
+
+        <h3>Payment Details</h3>
+
+        <p>
+            <strong>Payment ID:</strong>
+            {{ payment.payment_id }}
+        </p>
+
+        <p>
+            <strong>Booking ID:</strong>
+            {{ booking.booking_id }}
+        </p>
+
+        <p>
+            <strong>Amount Paid:</strong>
+            ₹{{ payment.amount }}
+        </p>
+
+        <p>
+            <strong>Payment Method:</strong>
+            {{ payment.payment_method }}
+        </p>
+
+        <p>
+            <strong>Status:</strong>
+            {{ payment.payment_status }}
+        </p>
+
+    </div>
+
+
+    <div class="review-card">
+
+        <h3>Booking Confirmed</h3>
+
+        <p>
+            Your Tirupati Yatra booking has been
+            successfully completed.
+        </p>
+
+    </div>
+
+
+    <a href="/">
+        ← Book Another Journey
+    </a>
+
+</main>
+
+</body>
+
+</html>
