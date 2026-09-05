@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Search Results - Tirupati Yatra</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+
+            <h1>Tirupati Yatra</h1>
+
+            <p>Your Journey, Our Responsibility</p>
+
+        </div>
+
+    </header>
+
+
+    <main class="results-page">
+
+        <h2>Available Buses</h2>
+
+
+        {% if error %}
+
+            <div class="no-results">
+
+                <h3>{{ error }}</h3>
+
+            </div>
+
+        {% elif trips %}
+
+            {% for trip in trips %}
+
+                <div class="trip-card">
+
+                    <h3>
+                        {{ trip.bus.bus_name }}
+                    </h3>
+
+                    <p>
+                        <strong>Bus Number:</strong>
+                        {{ trip.bus.bus_number }}
+                    </p>
+
+                    <p>
+                        <strong>Route:</strong>
+                        {{ trip.route.source }}
+                        →
+                        {{ trip.route.destination }}
+                    </p>
+
+                    <p>
+                        <strong>Travel Date:</strong>
+                        {{ trip.travel_date }}
+                    </p>
+
+                    <p>
+                        <strong>Departure:</strong>
+                        {{ trip.departure_time }}
+                    </p>
+
+                    <p>
+                        <strong>Ticket Price:</strong>
+                        ₹{{ trip.price }}
+                    </p>
+
+                    <p>
+                        <strong>Available Seats:</strong>
+                        {{ trip.available_seats }}
+                    </p>
+
+                  <form
+                     action="/select-bus/{{ trip.trip_id }}"
+                     method="GET"
+                 >
+
+                    <button type="submit">
+                       Select Bus
+                     </button>
+
+</form>
+
+    </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="no-results">
+
+                <h3>No buses found</h3>
+
+                <p>
+                    No buses are available for
+                    the selected route and date.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+
+        <br>
+
+        <a href="/">
+            ← Search Again
+        </a>
+
+    </main>
+
+</body>
+
+</html>
