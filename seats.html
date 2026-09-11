@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Select Seat - Tirupati Yatra</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+
+        <h1>Tirupati Yatra</h1>
+
+        <p>Your Journey, Our Responsibility</p>
+
+    </div>
+
+</header>
+
+
+<main class="seat-page">
+
+    <h2>Select Your Seat</h2>
+
+
+    <!-- Trip Information -->
+
+    <div class="trip-summary">
+
+        <h3>
+            {{ trip.bus.bus_name }}
+        </h3>
+
+        <p>
+            {{ trip.route.source }}
+            →
+            {{ trip.route.destination }}
+        </p>
+
+        <p>
+            Travel Date:
+            {{ trip.travel_date }}
+        </p>
+
+        <p>
+            Departure:
+            {{ trip.departure_time }}
+        </p>
+
+        <p>
+            Ticket Price:
+            ₹{{ trip.price }}
+        </p>
+
+    </div>
+
+
+    <h3>Choose Your Seat</h3>
+
+
+    <!-- Selected Seat -->
+
+    <p id="selected-seat">
+
+        No seat selected
+
+    </p>
+
+
+    <!-- Seats -->
+
+    <div class="seat-container">
+
+        {% for seat in seats %}
+
+            <button
+                type="button"
+                class="seat"
+                data-seat-id="{{ seat.seat_id }}"
+                data-seat-number="{{ seat.seat_number }}"
+            >
+
+                {{ seat.seat_number }}
+
+            </button>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- Continue -->
+<form
+    action="/passenger-details/{{ trip.trip_id }}"
+    method="POST"
+    id="seat-form"
+>
+
+    <input
+        type="hidden"
+        name="seat_id"
+        id="selected-seat-id"
+    >
+
+    <button
+        type="submit"
+        class="continue-btn"
+        id="continue-btn"
+    >
+        Continue
+    </button>
+
+</form>
+
+
+    <br>
+    <br>
+
+
+    <a href="/">
+        ← Back to Search
+    </a>
+
+
+</main>
+
+
+<script>
+
+    // Store currently selected seat
+
+    let selectedSeat = null;
+
+
+    // Get all seat buttons
+
+    const seats =
+        document.querySelectorAll(".seat");
+
+
+    // Get selected seat text
+
+    const selectedSeatText =
+        document.getElementById("selected-seat");
+
+
+    // Get continue button
+
+    const continueButton =
+        document.getElementById("continue-btn");
+
+
+    // Add click event to every seat
+
+    seats.forEach(function(seat) {
+
+        seat.addEventListener("click", function() {
+
+
+            // Remove selection from all seats
+
+            seats.forEach(function(item) {
+
+                item.classList.remove("selected");
+
+            });
+
+
+            // Select clicked seat
+
+            seat.classList.add("selected");
+
+
+            // Store selected seat
+
+            selectedSeat =
+                seat.dataset.seatId;
+
+
+            // Get seat number
+
+            const seatNumber =
+                seat.dataset.seatNumber;
+
+
+            // Show selected seat
+
+            selectedSeatText.textContent =
+                "Selected Seat: " + seatNumber;
+
+        });
+
+    });
+
+
+    // Continue button
+
+    continueButton.addEventListener(
+    "click",
+    function(event) {
+
+        if (!selectedSeat) {
+
+            event.preventDefault();
+
+            alert(
+                "Please select a seat first."
+            );
+
+            return;
+
+        }
+
+        document.getElementById(
+            "selected-seat-id"
+        ).value = selectedSeat;
+
+    }
+);
+</script>
+
+
+</body>
+
+</html>
